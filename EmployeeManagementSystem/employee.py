@@ -129,7 +129,7 @@ class employee:
         txt_dob.grid(row=3,column=1,padx=2,pady=7)
 
         # Date of joining
-        lbl_doj = Label(upper_frame,text='Date of Birth',font=('arial',11,'bold'),fg='black',bg='white')
+        lbl_doj = Label(upper_frame,text='Date of Joining',font=('arial',11,'bold'),fg='black',bg='white')
         lbl_doj.grid(row=3,column=2,padx=2,pady=7,sticky=W)
 
         txt_doj = ttk.Entry(upper_frame,textvariable=self.var_doj,width=22,font=('arial',11,'bold'))
