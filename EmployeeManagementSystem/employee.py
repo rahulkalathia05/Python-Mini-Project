@@ -5,7 +5,7 @@ import mysql.connector
 from tkinter import messagebox
 
 
-class Employee:
+class employee:
     def __init__(self,root):
         self.root = root
         self.root.geometry("1530x790+0+0")
@@ -136,7 +136,7 @@ class Employee:
         txt_doj.grid(row=3,column=3,padx=2,pady=7)
 
         # ID Proof
-        combo_proof = ttk.Combobox(upper_frame,font=('arial',11,'bold'),width=17,state='readonly')
+        combo_proof = ttk.Combobox(upper_frame,textvariable=self.var_idproofcomb,font=('arial',11,'bold'),width=17,state='readonly')
         combo_proof['value']=('Select ID Proof','PAN Card','Aadhar Card','Driving License')
         combo_proof.current(0)
         combo_proof.grid(row=4,column=0,padx=2,pady=7,sticky=W)
@@ -282,7 +282,7 @@ class Employee:
 
     def add_data(self):
         if self.var_dep.get()=='' or self.var_email.get()=='':
-            messagebox.showerror('Error','All Fields are required')
+            messagebox.showerror('Error','All Fields are required',parent=self.root)
         else :
             try:
                 conn = mysql.connector.connect(host='localhost',username='root',password='R@#ul051102',database='employee_management')
@@ -313,7 +313,7 @@ class Employee:
 
     # Fetch Data
     def fetch_data(self):
-        conn = mysql.connector.connect(host='localhost',username='root',password='',database='employee_management')
+        conn = mysql.connector.connect(host='localhost',username='root',password='R@#ul051102',database='employee_management')
         my_cursor = conn.cursor()
         my_cursor.execute('select * from employee')
         data = my_cursor.fetchall()
@@ -348,10 +348,10 @@ class Employee:
     # Update 
     def update_data(self):
         if self.var_dep.get()=='' or self.var_email.get()=='':
-            messagebox.showerror('Error','All Fields are required')
+            messagebox.showerror('Error','All Fields are required',parent=self.root)
         else :
             try:
-                update = messagebox.askyesno('update','Are you Sure update this employee data?')
+                update = messagebox.askyesno('update','Are you Sure update this employee data?',parent=self.root)
                 if update>0:
                     conn = mysql.connector.connect(host='localhost',username='root',password='R@#ul051102',database='employee_management')
                     my_cursor = conn.cursor()
@@ -384,10 +384,10 @@ class Employee:
     # Delete
     def delete_data(self):
         if self.var_idproof.get()=='':
-            messagebox.showerror('Error','All fields are required')
+            messagebox.showerror('Error','All fields are required',parent=self.root)
         else:
             try:
-                Delete = messagebox.askyesno('Delete','Are you sure to delete this Employee')
+                Delete = messagebox.askyesno('Delete','Are you sure to delete this Employee',parent=self.root)
                 if Delete>0:
                    conn = mysql.connector.connect(host='localhost',username='root',password='R@#ul051102',database='employee_management')
                    my_cursor = conn.cursor() 
@@ -424,7 +424,7 @@ class Employee:
     # Search 
     def search_data(self):
         if self.var_com_search.get()=="" or self.var_search=="":
-            messagebox.showerror("Error",'Please Select Option')
+            messagebox.showerror("Error",'Please Select Option',parent=self.root)
         else:
             try:
                 conn = mysql.connector.connect(host='localhost',username='root',password='R@#ul051102',database='employee_management')
@@ -439,15 +439,9 @@ class Employee:
                 conn.close()
             except Exception as es:
                 messagebox.showerror('Error',f'Due To:{str(es)}',parent=self.root)
-
-
-
-
-
         
 
 if __name__=="__main__":
     root = Tk()
-    obj = Employee(root)
+    obj = employee(root)
     root.mainloop()
-
