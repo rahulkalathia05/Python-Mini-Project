@@ -48,7 +48,7 @@ class Login_Window:
         self.txtpass.place(x=40,y=250,width=270)
 
         # Icon Imgaes
-        img2 = Image.open(r"usericon.png")
+        img2 = Image.open(r"emailicon.png")
         img2 = img2.resize((25,25),Image.ANTIALIAS)
         self.photoimage2 = ImageTk.PhotoImage(img2)
         lblimg2 = Label(image = self.photoimage2, bg="white",borderwidth=0)
@@ -148,6 +148,7 @@ class Login_Window:
                 self.root2 = Toplevel()
                 self.root2.title("Forget Password")
                 self.root2.geometry("340x450+610+170")
+                self.root2.configure(bg="white")
 
                 l = Label(self.root2,text="Forget Password",font=('times new roman',20,'bold'),fg="red",bg="white")
                 l.place(x=0,y=10,relwidth=1)
