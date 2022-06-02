@@ -210,11 +210,8 @@ class employee:
         search_by.grid(row=0,column=0,padx=5,sticky=W)
 
         # Search
-        self.var_com_search= StringVar()
-        com_search = ttk.Combobox(search_frame,textvariable=self.var_com_search,font=('arial',11,'bold'),width=17,state='readonly')
-        com_search['value']=('Select Option','Phone','ID Proof')
-        com_search.current(0)
-        com_search.grid(row=0,column=1,padx=5,sticky=W)
+        lbl_search = Label(search_frame,text='Phone no. :',font=('arial',13,'bold'),fg='black',bg='white',width=15)
+        lbl_search.grid(row=0,column=1,padx=5,sticky=W)
 
         self.var_search = StringVar()
         txt_search = ttk.Entry(search_frame,textvariable=self.var_search,width=22,font=('arial',11,'bold'))
@@ -423,13 +420,13 @@ class employee:
 
     # Search 
     def search_data(self):
-        if self.var_com_search.get()=="" or self.var_search=="":
-            messagebox.showerror("Error",'Please Select Option',parent=self.root)
+        if self.var_search=="":
+            messagebox.showerror("Error",'Please enter phone number',parent=self.root)
         else:
             try:
                 conn = mysql.connector.connect(host='localhost',username='root',password='R@#ul051102',database='employee_management')
                 my_cursor = conn.cursor()
-                my_cursor.execute('select * from employee where ' +str(self.var_com_search.get())+" LIKE '%"+str(self.var_search.get()+"%'"))
+                my_cursor.execute('select * from employee where Phone ' +" LIKE '%"+str(self.var_search.get()+"%'"))
                 rows = my_cursor.fetchall()
                 if len(rows)!=0:
                     self.employee_table.delete(*self.employee_table.get_children())

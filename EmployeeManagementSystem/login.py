@@ -68,7 +68,7 @@ class Login_Window:
         registerbtn.place(x=20,y=350,width=160)
 
         forgetbtn = Button(frame,text='Forget Password',command=self.forgot_password_window,borderwidth=0,font=('times new roman',12,'bold'),width=13,bg='white',fg='black',activeforeground="black",activebackground="white")
-        forgetbtn.place(x=10,y=370,width=160)
+        forgetbtn.place(x=10,y=380,width=160)
 
     def register_window(self):
         self.new_window = Toplevel(self.root)
