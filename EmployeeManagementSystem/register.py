@@ -22,18 +22,20 @@ class register:
 
 
         # Background
-        self.bg = ImageTk.PhotoImage(file=r'img5.jpg')
+        self.bg = ImageTk.PhotoImage(file=r'bgimg.jpg')
         bg_lbl = Label(self.root,image = self.bg)
-        bg_lbl.place(x=0,y=0,relwidth=1,relheight=1)
+        bg_lbl.place(x=0,y=0,width=1530,height=790)
 
         # Left Image
-        self.bg1 = ImageTk.PhotoImage(file=r'user.jpg')
-        left_lbl = Label(self.root,image = self.bg1)
-        left_lbl.place(x=50,y=100,width=470,height=550)
+        user_img = Image.open(r'user.jpg')
+        user_img = user_img.resize((420,450),Image.ANTIALIAS)
+        self.userimg = ImageTk.PhotoImage(user_img)
+        left_lbl = Label(self.root,image = self.userimg)
+        left_lbl.place(x=75,y=150,width=420,height=450)
 
         # Register Frame
         frame = Frame(self.root,bg='white')
-        frame.place(x=520,y=100,width=800,height=550)
+        frame.place(x=590,y=100,width=800,height=550)
 
         register_lbl = Label(frame,text="REGISTER HERE",font=('times new roman',15,'bold'),fg="green",bg="white")
         register_lbl.place(x=20,y=20)
